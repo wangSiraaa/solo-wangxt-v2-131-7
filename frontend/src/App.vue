@@ -11,6 +11,7 @@
     <div class="layout">
       <aside class="panel">
         <h2>录波清单</h2>
+        <NewUploadForm @created="onUploadCreated" />
         <div
           v-for="item in manifests"
           :key="item.id"
@@ -35,10 +36,11 @@
             </div>
           </div>
           <div>
-            <button @click="finalize" :disabled="manifest.status !== 'open'">核对并完成</button>
             <button class="secondary" @click="refreshAll">刷新</button>
           </div>
         </div>
+
+        <UploadPanel :manifest="manifest" :chunks="chunks" :initial-file="pendingFile" @changed="loadDetail" />
 
         <h3>块与缺口</h3>
         <GapChart :chunks="chunks" :manifest="manifest" :issues="issues" />
@@ -102,6 +104,8 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import * as echarts from 'echarts'
 import { api } from './api'
+import NewUploadForm from './components/NewUploadForm.vue'
+import UploadPanel from './components/UploadPanel.vue'
 
 const health = ref({ status: 'connecting', object_store: '-' })
 const manifests = ref([])
@@ -117,6 +121,7 @@ const reports = ref([])
 const reportId = ref(null)
 const report = ref(null)
 const timer = ref(null)
+const pendingFile = ref(null)
 
 const short = (value) => value ? `${String(value).slice(0, 8)}…` : '—'
 const unwrap = async (promise) => {
@@ -130,8 +135,12 @@ async function loadManifests() {
 async function refreshAll() {
   await loadHealth(); await loadManifests(); await loadDetail()
 }
-async function finalize() {
-  try { await api.finalize(selectedId.value) } finally { await loadDetail() }
+async function onUploadCreated({ manifestId, file }) {
+  // 新建清单后立即选中并把同一会话的文件句柄移交给续传面板
+  pendingFile.value = file
+  selectedId.value = manifestId
+  await loadManifests()
+  await loadDetail()
 }
 async function selectManifest(id) { selectedId.value = id; await loadDetail() }
 async function loadDetail() {

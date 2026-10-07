@@ -52,6 +52,29 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 .issue.error { border-color: #d8274f; }
 .issue.warning { border-color: #e99b1c; }
 .chart { height: 280px; margin-top: 12px; }
+
+/* 断点续传 */
+.upload-panel { border: 1px solid #d9e2ee; border-radius: 10px; padding: 12px 14px; margin: 12px 0; background: #fbfdff; }
+.upload-panel h3 { margin: 0 0 8px; }
+.resume-card { background: #f4f8fd; border: 1px solid #dbe7f5; border-radius: 8px; padding: 10px; margin-bottom: 10px; }
+.file-pick { font-size: 13px; }
+.file-pick input { max-width: 320px; }
+.upload-summary { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+.progress { flex: 1; height: 10px; border-radius: 999px; background: #e3eaf4; overflow: hidden; min-width: 120px; }
+.progress.small { height: 7px; min-width: 90px; display: inline-block; width: 120px; flex: none; vertical-align: middle; margin-right: 6px; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #1769aa, #1c9b61); transition: width .2s; }
+.chunk-table { margin-top: 6px; }
+.chunk-table td, .chunk-table th { padding: 5px 7px; }
+.upload-actions { margin-top: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.upload-actions button { margin-right: 0; }
+.ok-text { color: #116c36; font-weight: 600; }
+.err-text { color: #a01636; font-size: 12px; }
+.new-upload { margin-bottom: 12px; border: 1px dashed #b9c8dc; border-radius: 8px; padding: 8px 10px; }
+.new-upload summary { cursor: pointer; font-size: 13px; color: #1769aa; }
+.new-upload-body { margin-top: 8px; display: grid; gap: 8px; font-size: 13px; }
+.new-upload-body label { display: grid; gap: 3px; color: #42506a; }
+.new-upload-body input { padding: 5px 7px; border: 1px solid #c9d5e5; border-radius: 6px; font-size: 13px; }
+.new-upload-actions { margin-top: 2px; }
 table { border-collapse: collapse; width: 100%; font-size: 13px; }
 th, td { border-bottom: 1px solid #e5ebf3; padding: 7px; text-align: left; }
 pre { white-space: pre-wrap; max-height: 260px; overflow: auto; background: #0f172a; color: #dbeafe; padding: 12px; border-radius: 8px; }

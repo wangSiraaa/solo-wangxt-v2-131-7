@@ -55,3 +55,28 @@ button:disabled { opacity: .45; cursor: not-allowed; }
 table { border-collapse: collapse; width: 100%; font-size: 13px; }
 th, td { border-bottom: 1px solid #e5ebf3; padding: 7px; text-align: left; }
 pre { white-space: pre-wrap; max-height: 260px; overflow: auto; background: #0f172a; color: #dbeafe; padding: 12px; border-radius: 8px; }
+
+.upload-panel { margin: 16px 0; border: 1px solid #d9e2ee; border-radius: 10px; padding: 12px 14px; background: #fbfdff; }
+.upload-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
+.upload-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.file-picker { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; }
+.file-picker input[type="file"] { max-width: 280px; }
+.upload-banner { margin: 8px 0; padding: 8px 10px; border-radius: 8px; font-size: 13px; background: #eef4fb; border: 1px solid #cdddf1; }
+.upload-banner.ok { background: #e7f7ee; border-color: #a9dfc0; color: #116c36; }
+.upload-banner.error { background: #ffe9ee; border-color: #f2b3c2; color: #a01636; }
+.upload-banner.info { background: #eef4fb; }
+.overall { display: flex; align-items: center; gap: 12px; margin: 10px 0; }
+.overall-bar { flex: 0 0 260px; height: 10px; border-radius: 999px; background: #e3eaf4; overflow: hidden; }
+.overall-fill { height: 100%; background: linear-gradient(90deg, #1769aa, #1c9b61); transition: width .25s ease; }
+.chunk-scroll { max-height: 280px; overflow: auto; margin-top: 8px; }
+.chunk-table th, .chunk-table td { font-size: 12px; padding: 5px 7px; }
+.chunk-state { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11px; white-space: nowrap; }
+.chunk-state.unknown { background: #e9edf3; color: #55617a; }
+.chunk-state.verified { background: #e1edff; color: #174c9c; }
+.chunk-state.present, .chunk-state.done { background: #dcf7e8; color: #116c36; }
+.chunk-state.uploading { background: #fff0cf; color: #8a5a00; }
+.chunk-state.error { background: #ffe0e6; color: #a01636; }
+tr.st-error td { background: #fff6f8; }
+tr.st-uploading td { background: #fffaf0; }
+.cell-error { color: #a01636; max-width: 340px; }
+button.tiny { padding: 3px 8px; font-size: 12px; margin-right: 0; }

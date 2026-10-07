@@ -35,10 +35,11 @@
             </div>
           </div>
           <div>
-            <button @click="finalize" :disabled="manifest.status !== 'open'">核对并完成</button>
             <button class="secondary" @click="refreshAll">刷新</button>
           </div>
         </div>
+
+        <UploadPanel :manifest="manifest" @finalized="loadDetail" />
 
         <h3>块与缺口</h3>
         <GapChart :chunks="chunks" :manifest="manifest" :issues="issues" />
@@ -102,6 +103,7 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import * as echarts from 'echarts'
 import { api } from './api'
+import UploadPanel from './upload/UploadPanel.vue'
 
 const health = ref({ status: 'connecting', object_store: '-' })
 const manifests = ref([])
@@ -129,9 +131,6 @@ async function loadManifests() {
 }
 async function refreshAll() {
   await loadHealth(); await loadManifests(); await loadDetail()
-}
-async function finalize() {
-  try { await api.finalize(selectedId.value) } finally { await loadDetail() }
 }
 async function selectManifest(id) { selectedId.value = id; await loadDetail() }
 async function loadDetail() {
